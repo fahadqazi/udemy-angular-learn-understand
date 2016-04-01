@@ -45,7 +45,41 @@
                 <input type="text" ng-model="handle"/>
               </div>  
               
-              <h1><a href="http://www.twitter.com" target="_blank">www.twitter.com/{{ lowercasehandle() }}</a></h1>
+              <div class="alert" ng-class="{ 'alert-warning': handle.length<characters, 'alert-danger': handle.length>characters, 
+                                           'alert-success': handle.length === characters }">
+                
+                  <div ng-show="handle.length < characters"> 
+                    You have less than 5 characters
+                  </div>
+
+                  <div ng-show="handle.length > characters">
+                    You have more than 5 characters
+                  </div>
+
+                  <div ng-show="handle.length === characters">
+                    You now have 5 characters
+                  </div>
+                
+              </div>
+              
+              <hr/>
+              
+              <h1><a ng-href="http://www.twitter.com/{{lowercasehandle()}}" target="_blank">www.twitter.com/{{ lowercasehandle() }}</a></h1>
+
+              <hr/>
+              
+              <div>
+                <ul>
+                  <li ng-repeat="rule in rules"> {{ rule.rulename }} </li>
+                </ul>
+              </div>
+              
+              <hr/>
+              
+              <div>
+                <h3>Click to display alert</h3>
+                <input type="button" value="Click" ng-click="alertme()"/>
+              </div>
                 
             </div>
 
