@@ -29,14 +29,40 @@ angularApp.config(function($routeProvider){
   
 });
 
+//SERVICE
+angularApp.service('nameService', function(){
+  
+  var self = this;
+  this.name = 'john doe';
+  
+  this.namelength = function(){
+    return self.name.length;
+  }
+});
+
 // CONTROLLERS
-angularApp.controller('mainController', ['$scope','$location','$log', function($scope,$log) {
-  $scope.name = "Main";
+angularApp.controller('mainController', ['$scope','$log','nameService', function($scope,$log,nameService) {
+  
+  $scope.name = nameService.name;
+  
+  $log.log(nameService.name);
+  $log.log(nameService.namelength());
+  
+  $scope.$watch('name', function(){
+    nameService.name = $scope.name;
+  });
+  
 }]);
 
 
-angularApp.controller('secondController', ['$scope','$log', function($scope,$log){
-  $scope.name = "new page";
+angularApp.controller('secondController', ['$scope','$log','nameService', function($scope,$log,nameService){
+  
+  $scope.name = nameService.name;
+  
+  $scope.$watch('name', function(){
+    nameService.name = $scope.name;
+  });
+  
 }]);
 
 angularApp.controller('thirdController', ['$scope','$log','$routeParams', function($scope,$log,$routeParams){
