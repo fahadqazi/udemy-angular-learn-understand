@@ -1,28 +1,34 @@
 // MODULE
-var angularApp = angular.module('angularApp', []);
+var angularApp = angular.module('angularApp', ['ngRoute']);
+
+
+//ROUTES
+angularApp.config(function($routeProvider){
+    
+  $routeProvider
+  
+  .when('/',{
+    templateUrl: 'pages/main.html',
+    controller: 'mainController'
+  })
+  
+  .when('/second',{
+    templateUrl: 'pages/second.html',
+    controller: 'secondController'
+  })
+  
+});
 
 // CONTROLLERS
-angularApp.controller('mainController', ['$scope','$filter', function($scope,$filter) {
+angularApp.controller('mainController', ['$scope','$location','$log', function($scope,$log) {
     
-    $scope.handle = '';
-    $scope.characters = 5;  
-    
-    $scope.lowercasehandle = function(){
-      return $filter('lowercase')($scope.handle);
-    }
-    
-    $scope.rules = [
-      
-      {rulename: "Must be 5 characters"},
-      {rulename: "Must not be used elesewhere"},
-      {rulename: "Must be cool"}
-    ];
-  
-    $scope.alertme = function(){
-        alert("Alert Clicked!");
-    };
+  $scope.name = "Main";
   
 }]);
 
 
-
+angularApp.controller('secondController', ['$scope','$log', function($scope,$log){
+  
+  $scope.name = "new page";
+  
+}]);
