@@ -43,28 +43,31 @@ angularApp.service('nameService', function(){
 // CONTROLLERS
 angularApp.controller('mainController', ['$scope','$log','nameService', function($scope,$log,nameService) {
   
-  $scope.name = nameService.name;
-  
-  $log.log(nameService.name);
-  $log.log(nameService.namelength());
-  
-  $scope.$watch('name', function(){
-    nameService.name = $scope.name;
-  });
+ 
   
 }]);
 
 
 angularApp.controller('secondController', ['$scope','$log','nameService', function($scope,$log,nameService){
   
-  $scope.name = nameService.name;
-  
-  $scope.$watch('name', function(){
-    nameService.name = $scope.name;
-  });
+ 
   
 }]);
 
 angularApp.controller('thirdController', ['$scope','$log','$routeParams', function($scope,$log,$routeParams){
   $scope.num = $routeParams.num || 1;
 }]);
+
+//CUSTOM DIRECTVE
+angularApp.directive('searchResult', function(){
+  return {
+    restrict: 'AECM',
+    templateUrl: 'directives/searchresult.html',
+    replace: true
+  }
+});
+
+
+
+
+
