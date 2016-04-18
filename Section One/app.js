@@ -43,7 +43,10 @@ angularApp.service('nameService', function(){
 // CONTROLLERS
 angularApp.controller('mainController', ['$scope','$log','nameService', function($scope,$log,nameService) {
   
- 
+ $scope.person = {
+   name: 'John Doe',
+   address: '555 Main St. New York, NY 1111'
+ }
   
 }]);
 
@@ -63,7 +66,11 @@ angularApp.directive('searchResult', function(){
   return {
     restrict: 'AECM',
     templateUrl: 'directives/searchresult.html',
-    replace: true
+    replace: true,
+    scope:{
+      personName: "@",
+      personAddress: "@"
+    } //isolates the scope
   }
 });
 
