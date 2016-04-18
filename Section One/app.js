@@ -43,13 +43,27 @@ angularApp.service('nameService', function(){
 // CONTROLLERS
 angularApp.controller('mainController', ['$scope','$log','nameService', function($scope,$log,nameService) {
   
- $scope.person = {
+ $scope.people = [
+   {
    name: 'John Doe',
    address: '555 Main St.',
    city: 'New York,',
    state: 'NY,',
    zip: '1111'
- }
+  },{
+   name: 'Jane Doe',
+   address: '21 jump St.',
+   city: 'Los Angeles,',
+   state: 'CA,',
+   zip: '222'
+  },{
+   name: 'Jim Doe',
+   address: '85 Baton St.',
+   city: 'Miami,',
+   state: 'FL,',
+   zip: '333'
+  }
+   ]
  
  $scope.formattedAddress = function(person){
     
@@ -79,7 +93,17 @@ angularApp.directive('searchResult', function(){
     scope:{
       personObject: "=",
       formattedAddressFunction: "&"
-    } //isolates the scope
+    }, //isolates the scope
+    link: function(scope, elements, attrs){
+      console.log("Linking...");
+      
+      console.log(scope);
+      
+      if(scope.personObject.name = "John Doe"){
+        elements.removeAttr('class');
+      }
+      console.log(elements);
+    }
   }
 });
 
