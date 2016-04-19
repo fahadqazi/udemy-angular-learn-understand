@@ -63,7 +63,7 @@ angularApp.controller('mainController', ['$scope','$log','nameService', function
    state: 'FL,',
    zip: '333'
   }
-   ]
+   ];
  
  $scope.formattedAddress = function(person){
     
@@ -93,17 +93,7 @@ angularApp.directive('searchResult', function(){
     scope:{
       personObject: "=",
       formattedAddressFunction: "&"
-    }, //isolates the scope
-    link: function(scope, elements, attrs){
-      console.log("Linking...");
-      
-      console.log(scope);
-      
-      if(scope.personObject.name = "John Doe"){
-        elements.removeAttr('class');
-      }
-      console.log(elements);
-    }
+    } 
   }
 });
 
