@@ -65,6 +65,35 @@ weatherApp.controller('forecastController', ['$scope','$resource', 'cityService'
     
 }]);
 
+//DIRECTIVES
+//weatherApp.directive("weatherReport", function(){
+//   return {
+//           restrict: 'E',
+//           templateUrl: 'directives/weatherReport.html',
+//           replace: true,
+//           scope:{
+//              weatherDay: "=",
+//              convertToFahrenheit: "&",
+//              convertToDate: "&",
+//              dateFormat: "@"
+//           }
+//    }
+//});
+
+// DIRECTIVES
+weatherApp.directive("weatherReport", function() {
+   return {
+       restrict: 'E',
+       templateUrl: 'directives/weatherReport.html',
+       replace: true,
+       scope: {
+           weatherDay: "=",
+           convertToStandard: "&",
+           convertToDate: "&",
+           dateFormat: "@"
+       }
+   }
+});
 
 
 
